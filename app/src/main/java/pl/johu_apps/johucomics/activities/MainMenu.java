@@ -1,7 +1,9 @@
-package pl.johu_apps.johucomics;
+package pl.johu_apps.johucomics.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import pl.johu_apps.johucomics.R;
 
 public class MainMenu extends AppCompatActivity {
 
