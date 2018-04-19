@@ -19,7 +19,7 @@ public class HttpHandler {
 
     private static final String comicsURL = "https://api.myjson.com/bins/d7rxb";
 
-    public List<Comic> getComiscList(String comicsURL) {
+    public List<Comic> getComiscList() {
         List<Comic> comics = new ArrayList<>();
 
         try (InputStream inputStream = new URL(comicsURL).openStream()) {

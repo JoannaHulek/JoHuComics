@@ -3,25 +3,31 @@ package pl.johu_apps.johucomics.specifics;
 import java.util.ArrayList;
 
 public class Comic {
-    private static String title;
-    private static String author;
-    private static ArrayList<Cage> cagesList;
+    private String title;
+    private String author;
+    private String comicLogoURL;
+    private ArrayList<Cage> cagesList;
 
     public Comic(String title, String author, ArrayList<Cage> cagesList) {
         this.title = title;
         this.author = author;
         this.cagesList = cagesList;
+        this.comicLogoURL = "https://vgarmada.files.wordpress.com/2011/08/dilbert.jpg";
     }
 
-    public static String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public static String getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public static ArrayList<Cage> getCagesList() {
+    public ArrayList<Cage> getCagesList() {
         return cagesList;
+    }
+
+    public String getComicLogoURL() {
+        return comicLogoURL;
     }
 }
