@@ -3,12 +3,15 @@ package pl.johu_apps.johucomics.activities;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
 
 import java.util.List;
 
 import pl.johu_apps.johucomics.R;
 import pl.johu_apps.johucomics.adapters.ComicViewAdapter;
+import pl.johu_apps.johucomics.adapters.ComicsRecyclerViewAdapter;
 import pl.johu_apps.johucomics.specifics.Comic;
 import pl.johu_apps.johucomics.utils.HttpHandler;
 
@@ -19,19 +22,21 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        ListView myComicsListView = (ListView) findViewById(R.id.my_comics_list_view);
-        ListView moreComicsListView = (ListView) findViewById(R.id.more_comics_list_view);
-
-        new LoadJsonTask(moreComicsListView).execute();
+        ListView myComicsListView = findViewById(R.id.my_comics_list_view);
+        RecyclerView moreComicsRecyclerView =  findViewById(R.id.more_comics_recycler_view);
+        LinearLayoutManager layout = new LinearLayoutManager(this);
+        layout.setOrientation(LinearLayoutManager.HORIZONTAL);
+        moreComicsRecyclerView.setLayoutManager(layout);
+        new LoadJsonTask(moreComicsRecyclerView).execute();
 
     }
 
     private class LoadJsonTask extends AsyncTask<Void, Void, List<Comic>> {
 
-        private final ListView comicsListView;
+        private final RecyclerView comicsRecyclerView;
 
-        public LoadJsonTask(ListView comicsListView) {
-            this.comicsListView = comicsListView;
+        public LoadJsonTask(RecyclerView comicsRecyclerView) {
+            this.comicsRecyclerView = comicsRecyclerView;
         }
 
 
@@ -41,8 +46,8 @@ public class MainMenu extends AppCompatActivity {
         }
 
         protected void onPostExecute(List<Comic> comicsList) {
-            comicsListView.setAdapter(
-                    new ComicViewAdapter(MainMenu.this, comicsList));
+            comicsRecyclerView.setAdapter(
+                    new ComicsRecyclerViewAdapter(comicsList));
 
         }
 
