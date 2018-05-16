@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/custom_comic_grid_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:columnWidth="@dimen/frame_preview_dimen"
+    android:drawSelectorOnTop="true"
+    android:gravity="center"
+    android:horizontalSpacing="8dp"
+    android:numColumns="auto_fit"
+    android:orientation="horizontal"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="8dp"
+    tools:context=".activities.CustomComic">
+
+</GridView>

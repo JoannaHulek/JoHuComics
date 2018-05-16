@@ -1,6 +1,7 @@
 package pl.johu_apps.johucomics.adapters;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import pl.johu_apps.johucomics.R;
@@ -34,8 +38,17 @@ public class ComicViewAdapter extends ArrayAdapter<Comic> {
 
         ImageView comicLogoImgview = convertView.findViewById(R.id.comic_logo_imgview);
         TextView comicTitle = convertView.findViewById(R.id.comic_title_textview);
-
-        comicLogoImgview.setImageURI(Uri.parse(comic.getComicLogoURL()));
+        URL url = null;
+        try {
+            url = new URL(comic.getComicLogoURL());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            comicLogoImgview.setImageBitmap(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         comicTitle.setText(comic.getTitle());
 
         return convertView;

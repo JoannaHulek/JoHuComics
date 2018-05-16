@@ -22,12 +22,20 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        ListView myComicsListView = findViewById(R.id.my_comics_list_view);
+        LinearLayoutManager myComiscsLayout = new LinearLayoutManager(this);
+        myComiscsLayout.setOrientation(LinearLayoutManager.HORIZONTAL);
+        RecyclerView myComicsRecycerView = findViewById(R.id.my_comics_recycler_view);
+        myComicsRecycerView.setLayoutManager(myComiscsLayout);
+        new LoadJsonTask(myComicsRecycerView).execute();
+
+        LinearLayoutManager moreComicsLayout = new LinearLayoutManager(this);
+        moreComicsLayout.setOrientation(LinearLayoutManager.HORIZONTAL);
         RecyclerView moreComicsRecyclerView =  findViewById(R.id.more_comics_recycler_view);
-        LinearLayoutManager layout = new LinearLayoutManager(this);
-        layout.setOrientation(LinearLayoutManager.HORIZONTAL);
-        moreComicsRecyclerView.setLayoutManager(layout);
+        moreComicsRecyclerView.setLayoutManager(moreComicsLayout);
         new LoadJsonTask(moreComicsRecyclerView).execute();
+
+
+
 
     }
 
